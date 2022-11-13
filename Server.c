@@ -14,7 +14,7 @@ int main()
 	int opt = 1;
 	int addrlen = sizeof(address);
 	char buffer[1024] = { 0 };
-	char* hello = "Hello from server";
+	char* hello = "0|1|2 3|4|5 6|7|8";
 
 	// Creating socket file descriptor
 	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -40,7 +40,7 @@ int main()
 		perror("bind failed");
 		exit(EXIT_FAILURE);
 	}
-	for(int i=0;i<4;i++)
+	for(int i=0;i<9;i++)
 	{
 		if (listen(server_fd, 3) < 0) {
 			perror("listen");
@@ -53,9 +53,9 @@ int main()
 			perror("accept");
 			exit(EXIT_FAILURE);
 		}
-		valread = read(new_socket, buffer, 1024);
-		printf("%s\n", buffer);
 		send(new_socket, hello, strlen(hello), 0);
+		valread = read(new_socket, buffer, 1024);
+		hello=buffer;
 		printf("Hello message sent\n");
 	}
 	// closing the connected socket
