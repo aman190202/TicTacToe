@@ -1,5 +1,6 @@
 # TicTacToe
 A TCP Client Server based Tic Tac Toe
+<img src="misc/SS.png"/>
 ## How to Run
 
 ### Server
